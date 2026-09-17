@@ -1,49 +1,69 @@
-This is a [Next.js](https://nextjs.org) project bootstrapped with
-[`create-next-app`](https://nextjs.org/docs/app/api-reference/cli/create-next-app).
+# NoteHub — Homework 08 (Zustand)
 
-## Getting Started
+GoIT Next.js homework: a NoteHub client for creating, browsing, filtering, and deleting personal notes. Drafts on the create-note page are stored with Zustand (`persist`) so they survive a page reload.
 
-First, run the development server:
+Notes are loaded from the public NoteHub API (`https://notehub-public.goit.study/api`).
+
+## Live demo
+
+[https://08-zustand-liart-eight.vercel.app](https://08-zustand-liart-eight.vercel.app)
+
+## Features
+
+- Home page with a short NoteHub overview and header/footer layout
+- Notes list with server prefetch and client rendering via TanStack Query
+- Debounced keyword search (300 ms)
+- Pagination (12 notes per page; pager is shown when there is more than one page)
+- Tag filter sidebar: All notes, Todo, Work, Personal, Meeting, Shopping
+- Dedicated create-note page (`/notes/action/create`) with title, content, and tag
+- Zustand draft store (`notehub-draft`) that restores title, content, and tag after reload
+- Delete a note from the list
+- Note details page (`/notes/[id]`)
+- Intercepting-route modal preview when a note is opened from the list (close via button, backdrop, or Escape)
+- Custom 404 page and route-level error UI (with retry on notes list and note details)
+
+## Tech stack
+
+- Next.js 16 (App Router) and React 19
+- TypeScript
+- Zustand (with `persist`)
+- TanStack Query
+- Axios
+- react-paginate
+- use-debounce
+- modern-normalize
+- next/font (Roboto)
+- ESLint (`eslint-config-next`)
+
+## Getting started
+
+1. Clone the repository and install dependencies:
+
+```bash
+git clone https://github.com/groteskzp/08-zustand.git
+cd 08-zustand
+npm install
+```
+
+2. Create a `.env.local` file in the project root and add your NoteHub token:
+
+```bash
+NEXT_PUBLIC_NOTEHUB_TOKEN=your_token_here
+```
+
+3. Start the development server:
 
 ```bash
 npm run dev
-# or
-yarn dev
-# or
-pnpm dev
-# or
-bun dev
 ```
 
-Open [http://localhost:3000](http://localhost:3000) with your browser to see the
-result.
+4. Open [http://localhost:3000](http://localhost:3000) in the browser.
 
-You can start editing the page by modifying `app/page.tsx`. The page
-auto-updates as you edit the file.
+## Scripts
 
-This project uses
-[`next/font`](https://nextjs.org/docs/app/building-your-application/optimizing/fonts)
-to automatically optimize and load [Geist](https://vercel.com/font), a new font
-family for Vercel.
-
-## Learn More
-
-To learn more about Next.js, take a look at the following resources:
-
-- [Next.js Documentation](https://nextjs.org/docs) - learn about Next.js
-  features and API.
-- [Learn Next.js](https://nextjs.org/learn) - an interactive Next.js tutorial.
-
-You can check out
-[the Next.js GitHub repository](https://github.com/vercel/next.js) - your
-feedback and contributions are welcome!
-
-## Deploy on Vercel
-
-The easiest way to deploy your Next.js app is to use the
-[Vercel Platform](https://vercel.com/new?utm_medium=default-template&filter=next.js&utm_source=create-next-app&utm_campaign=create-next-app-readme)
-from the creators of Next.js.
-
-Check out our
-[Next.js deployment documentation](https://nextjs.org/docs/app/building-your-application/deploying)
-for more details.
+| Script | Command | Description |
+| --- | --- | --- |
+| `dev` | `npm run dev` | Start the Next.js development server |
+| `build` | `npm run build` | Create a production build |
+| `start` | `npm start` | Serve the production build |
+| `lint` | `npm run lint` | Run ESLint |
